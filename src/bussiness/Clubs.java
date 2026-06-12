@@ -85,7 +85,7 @@ public class Clubs {
 
         String newName = input.inputString("  New Club Name [" + c.getClubName() + "]: ");
         String newSponsor = input.inputString("  New Sponsor Brand [" + c.getSponsorBrand() + "]: ");
-        double newBudget = input.inputDouble("  New Budget [" + c.getBudget() + "]: ");
+        double newBudget = input.inputBudget("  New Budget [" + c.getBudget() + "]: ");
 
         if (!newName.isEmpty()) {
             c.setClubName(newName);

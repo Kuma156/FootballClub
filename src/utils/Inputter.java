@@ -153,13 +153,17 @@ public class Inputter implements Acceptable {
         while (true) {
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
-            if (input.isEmpty()) {
+            try{
+                if (input.isEmpty()) {
                 return -1;
             }
             if (Validator.isValidBudget(input)) {
                 return Double.parseDouble(input);
             }
             System.out.println("Invalid budget. Please try again.");
+            }catch(NumberFormatException e){
+                System.out.println("Invalid number. Please try again.");
+            }
         }
     }
 
