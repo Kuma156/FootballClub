@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class Inputter implements Acceptable {
 
-    private static Scanner scanner;
+    private Scanner scanner;
 
     public Inputter() {
         this.scanner = new Scanner(System.in);
@@ -110,7 +110,8 @@ public class Inputter implements Acceptable {
 
         while (true) {
             try {
-                int choice = Integer.parseInt(scanner.nextLine());
+                Scanner sc = new Scanner(System.in);
+                int choice = Integer.parseInt(sc.nextLine());
 
                 if (choice < min || choice > max) {
                     System.out.println("Choice must be from " + min + " to " + max);
@@ -155,7 +156,10 @@ public class Inputter implements Acceptable {
             if (input.isEmpty()) {
                 return -1;
             }
-            Acceptable.isValid(input, Acceptable.BUDGET_VALID);
+            if (Validator.isValidBudget(input)) {
+                return Double.parseDouble(input);
+            }
+            System.out.println("Invalid budget. Please try again.");
         }
     }
 
@@ -188,8 +192,8 @@ public class Inputter implements Acceptable {
             }
         }
     }
-    
-    public static Scanner getScanner() {
+
+    public Scanner getScanner() {
         return scanner;
     }
 }

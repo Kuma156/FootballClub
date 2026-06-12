@@ -6,7 +6,7 @@ package utils;
  */
 public interface Acceptable {
 
-    public final String DOUBLE_VALID = "^-?\\\\d*\\\\.?\\\\d+$";
+    public final String DOUBLE_VALID = "^-?\\d*\\.?\\d+$";
     public final String INTEGER_VALID = "\\d+";
     public final String YESNO_VALID = "^(?i)(y|n|yes|no)$";
 
@@ -21,7 +21,7 @@ public interface Acceptable {
     public final String PLAYER_VALID_ID = "^P\\d{4}$";
     //Format: Pxxxx
 
-    public final String POSITION_VALID = "(Goalkeeper|Defender|Midfielder|Forward|Winger)";
+    public final String POSITION_VALID = "(?i)(Goalkeeper|Defender|Midfielder|Forward|Winger)$";
     public final String SHIRT_NUMBER_VALID = "^([1-9][0-9]?)$";
     //Must be between 1 and 99
 

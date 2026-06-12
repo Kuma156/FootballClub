@@ -2,11 +2,9 @@ package dispatcher;
 
 import bussiness.Players;
 import bussiness.Clubs;
+import bussiness.Files;
 import utils.Inputter;
 import utils.Menu;
-import utils.UI;
-import java.io.IOException;
-import model.Player;
 
 /**
  * E:\Huy\,FPT\.Major\Summer26\Lab211\Lab\Lab1\TuLamGiaHuy_Lab1\MountainHiking
@@ -21,7 +19,7 @@ public class Main {
         Players playerService = new Players();
         Files fileService = new Files(clubService, playerService);
 
-        // Function 13 – Auto-load data on startup
+        // F13: Auto-load data on startup
         fileService.autoLoad();
 
         boolean running = true;
@@ -81,7 +79,7 @@ public class Main {
             if (running) {
                 System.out.println();
                 System.out.print("  Press ENTER to continue...");
-                Inputter.getScanner().nextLine();
+                
             }
         }
     }
