@@ -107,10 +107,10 @@ public class Inputter implements Acceptable {
     }
 
     public static int inputChoice(int min, int max) {
-
+        Scanner sc = new Scanner(System.in);
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
+
                 int choice = Integer.parseInt(sc.nextLine());
 
                 if (choice < min || choice > max) {
@@ -146,25 +146,6 @@ public class Inputter implements Acceptable {
     public String inputString(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
-    }
-
-    //Read a double from optional input (returns -1 if empty)
-    public double inputDouble(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
-            try{
-                if (input.isEmpty()) {
-                return -1;
-            }
-            if (Validator.isValidBudget(input)) {
-                return Double.parseDouble(input);
-            }
-            System.out.println("Invalid budget. Please try again.");
-            }catch(NumberFormatException e){
-                System.out.println("Invalid number. Please try again.");
-            }
-        }
     }
 
     // Read budget money
