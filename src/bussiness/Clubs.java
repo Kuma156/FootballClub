@@ -17,10 +17,9 @@ public class Clubs {
 
     private final List<Club> clubs = new ArrayList<>();
     private boolean modified = false;
-    
+
     private ViewClub viewClub = new ViewClub();
     private Inputter input = new Inputter();
-    
 
     //F1: List all clubs
     public void listAllClubs() {
@@ -49,9 +48,26 @@ public class Clubs {
             return;
         }
         String clubName = input.readNonEmpty("  Club Name: ");
-        String sponsor = input.readNonEmpty("  Sponsor Brand: ");
-        double budget = input.inputBudget("  Budget (million EUR): ");
+        if (!Validator.isValidName(clubName)) {
+            System.out.println("Invalid Club name format!");
+            return;
+        }
 
+        String sponsor = input.readNonEmpty("  Sponsor Brand: ");
+        if (!Validator.isValidName(sponsor)) {
+            System.out.println("Invalid Sponsor Brand format!");
+            return;
+        }
+        double budget = input.inputBudget("  Budget (million EUR): ");
+        if(budget<0){
+            System.out.println("Error: budget can't < 0");
+            return;
+        }
+        if (!Validator.isValidClubId(clubId)) {
+            System.out.println("Invalid budget format! Must be positive real number.");
+            return;
+        }
+        
         clubs.add(new Club(clubId, clubName, sponsor, budget));
         modified = true;
         System.out.println("Club added successfully!");

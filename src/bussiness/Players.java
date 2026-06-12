@@ -14,6 +14,8 @@ import utils.ViewPlayer;
  * @author The Miracle Invoker
  */
 public class Players {
+    
+    private static final int SKIP = -1, CONFLICT = -2;
 
     private List<Player> players = new ArrayList<>();
     private boolean modified = false;
@@ -82,7 +84,12 @@ public class Players {
         }
         // 3. Input Player Name
         String name = input.readNonEmpty("  Player Name: ");
-
+        if (clubId == null) {
+            return; // Abort if name is empty
+        }
+        if (!Validator.isValidName(name)) {
+            return; // Abort if name is wrong format
+        }
         // 4. Input and validate Position
         String position = getValidPosition();
         if (position == null) {
@@ -212,7 +219,7 @@ public class Players {
         if (!newPosition.isEmpty()) {
             if (!Validator.isValidPosition(newPosition)) {
                 System.out.println("Invalid position. Update aborted.");
-                return null; // Returns null to signal an abort
+
             }
         }
         return newPosition;
@@ -285,15 +292,15 @@ public class Players {
         return false;
     }
 
-    public String getPlayerInfo(Player p) {
-        return "------------------------------------------------------------"
+    public void getPlayerInfo(Player p) {
+        System.out.println("------------------------------------------------------------"
                 + "\nClub ID: " + p.getClubId()
                 + "\nPlayer ID: " + p.getPlayerId()
                 + "\nName: " + p.getPlayerName()
                 + "\nPosition: " + p.getPosition()
                 + "\n------------------------------------------------------------\n"
                 + "Do you want to delete this player (y/n): "
-                + "\n------------------------------------------------------------\n";
+                + "\n------------------------------------------------------------\n");
     }
 
     public List<Player> getPlayers() {
