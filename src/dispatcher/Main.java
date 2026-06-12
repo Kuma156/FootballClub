@@ -10,62 +10,79 @@ import model.Player;
 
 /**
  * E:\Huy\,FPT\.Major\Summer26\Lab211\Lab\Lab1\TuLamGiaHuy_Lab1\MountainHiking
- * https://github.com/Kuma156/MountainHiking
+ * https://github.com/Kuma156/FootballClub
  *
  * @author The Miracle Invoker
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
+        Clubs clubService = new Clubs();
+        Players playerService = new Players();
+        Files fileService = new Files(clubService, playerService);
 
-        Clubs clubList = new Clubs();
-        Players playerList = new Players();
+        // Function 13 – Auto-load data on startup
+        fileService.autoLoad();
 
-        clubList.loadData();
-        playerList.loadData();
-
-        PlayerController controller = new PlayerController(playerList, clubList);
-
-        UI.clearScreen();
-
-        while (true) {
-
-            Menu.printMainMenu();
-
+        boolean running = true;
+        while (running) {
+            Menu.printMenu();
             int choice = Inputter.inputChoice(1, 14);
 
             switch (choice) {
-                case 1: //new register
-                    controller.addStudentProcess();
+                case 1:
+                    clubService.listAllClubs();
                     break;
-                case 2: //update info
-                    controller.updateStudentProcess();
+                case 2:
+                    clubService.addClub();
                     break;
-                case 3: //show all student list
-                    controller.displayAllStudentsProcess();
+                case 3:
+                    clubService.searchClubById();
                     break;
-                case 4: //delete student
-                    controller.deleteStudentProcess();
+                case 4:
+                    clubService.updateClub();
                     break;
-                case 5: //search participant by name
-                    controller.searchStudentByNameProcess();
+                case 5:
+                    clubService.listClubsByBudget();
                     break;
-                case 6: //filter by campus
-                    controller.filterDataByCampusProcess();
+                case 6:
+                    playerService.listPlayersSorted(clubService);
                     break;
-                case 7: //statistics
-                    controller.showStatisticsProcess();
+                case 7:
+                    playerService.searchByPartialName();
                     break;
-                case 8: //save                    
-                    System.out.println("This function is not available.");
+                case 8:
+                    playerService.addPlayer(clubService);
                     break;
-                case 14: //exit
-                    controller.exitProcess();
+                case 9:
+                    playerService.removePlayer();
                     break;
-                default:
-                    System.out.println("This function is not available.");
+
+                case 10:
+                    playerService.updatePlayer();
+                    break;
+                case 11:
+                    playerService.listByPosition();
+                    break;
+                case 12:
+                    fileService.saveData();
+                    break;
+                case 13:
+                    fileService.loadData();
+                    break;
+                case 14:
+                    fileService.saveIfModified();
+
+                    System.out.println("  Goodbye! Thank you for using EEL Management System.");
+                    running = false;
+                    break;
+
             }
-            UI.pause();
+            if (running) {
+                System.out.println();
+                System.out.print("  Press ENTER to continue...");
+                Inputter.getScanner().nextLine();
+            }
         }
     }
 

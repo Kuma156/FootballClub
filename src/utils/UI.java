@@ -38,5 +38,31 @@ public class UI {
             System.out.println("  " + "-");
         }
     }
+    
+    public void exitProcess() {
+        System.out.println("-----EXIT APPLICATION-----");
+
+        
+            System.out.print("Do you want to save the changes before exiting? (Y/N): ");
+
+            boolean confirm = input.inputYesNo();
+
+            if (confirm == true) {
+
+                studentList.saveData();
+                System.out.println("Data saved successfully!");
+            } else {
+                System.out.println("You have unsaved changes. Are you sure you want to exit without saving? (Y/N)");
+                confirm = input.inputYesNo();
+                if (confirm == true) {
+                    studentList.saveData();
+                    System.out.println("Data saved successfully!");
+                } else {
+                    System.out.println("Exiting without saving changes...");
+                }
+            }
+        }
+        System.exit(0);
+    }
 
 }

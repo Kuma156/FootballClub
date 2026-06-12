@@ -182,10 +182,14 @@ public class Inputter implements Acceptable {
                 if (val >= min && val <= max) {
                     return val;
                 }
-                System.out.printf("  >> Please enter a number between %d and %d.%n", min, max);
+                System.out.printf("Please enter a number between %d and %d.%n", min, max);
             } catch (NumberFormatException e) {
-                System.out.println("  >> Invalid number. Please try again.");
+                System.out.println("Invalid number. Please try again.");
             }
         }
+    }
+    
+    public static Scanner getScanner() {
+        return scanner;
     }
 }
