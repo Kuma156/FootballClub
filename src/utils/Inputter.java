@@ -168,10 +168,13 @@ public class Inputter implements Acceptable {
         while (true) {
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
-            if (Validator.isValidBudget(input)) {
-                return Double.parseDouble(input);
-            } else {
-                return -1;
+            try {
+                if (Validator.isValidBudget(input)) {
+                    return Double.parseDouble(input);
+                }
+                System.out.print("Please enter a positive real number: ");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Please try again.");
             }
         }
     }
