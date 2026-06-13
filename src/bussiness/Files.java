@@ -17,8 +17,8 @@ import utils.Validator;
 
 public class Files {
 
-    private static final String CLUBS_FILE   = "data\\clubs.txt";
-    private static final String PLAYERS_FILE = "data\\players.txt";
+    private static final String CLUBS_FILE   = "data/clubs.txt";
+    private static final String PLAYERS_FILE = "data/players.txt";
 
     private final Clubs   clubService;
     private final Players playerService;
